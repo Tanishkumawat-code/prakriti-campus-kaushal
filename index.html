@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prakriti — a campus that shows its own health</title>
+<meta name="description" content="Prakriti is a living campus dashboard: electricity, water and waste become a tree, a river and a score anyone can read.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/scene.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/detail.css">
+<link rel="stylesheet" href="css/carbon.css">
+</head>
+<body>
+<a class="skip" href="#campus">Skip to campus</a>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">
+      <span class="deva" lang="hi">प्रकृति</span>
+      <span class="latin">Prakriti</span>
+    </div>
+    <nav class="nav" aria-label="Page">
+      <a href="#campus">Campus</a>
+      <a href="#readings">Readings</a>
+      <a href="#habits">Habits</a>
+      <a href="#carbon">Carbon credits</a>
+      <a href="#atlas">Buildings</a>
+      <a href="#method">How it works</a>
+    </nav>
+    <div class="top-tools">
+      <span class="sim"><i></i>Simulated campus feed</span>
+      <button class="ghost theme" id="theme" type="button" aria-label="Toggle colour theme">Theme</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage" id="campus">
+      <div class="tag">
+        <p class="kicker">Living campus dashboard</p>
+        <h1 id="hl">The campus is holding steady.</h1>
+        <p id="sub"></p>
+        <div class="leaves" id="leaves" role="img" aria-label="Eco-score"></div>
+      </div>
+
+      <svg id="scene" viewBox="0 0 1200 520" role="img" aria-label="Illustration of a campus with a banyan tree and a river. The scene brightens or wilts with the campus eco-score.">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop id="sky-a" offset="0" stop-color="#8cc7e6"/>
+            <stop id="sky-b" offset="1" stop-color="#d7eef6"/>
+          </linearGradient>
+          <radialGradient id="glow">
+            <stop id="glow-a" offset="0" stop-color="#fff2c0" stop-opacity=".9"/>
+            <stop id="glow-b" offset="1" stop-color="#fff2c0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="smoggrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9a8f7e" stop-opacity="0"/>
+            <stop offset="1" stop-color="#9a8f7e" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#6e9f58"/>
+            <stop offset="1" stop-color="#4f8044"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="520" fill="url(#sky)"/>
+        <g id="stars"></g>
+        <circle id="orb-glow" r="80" fill="url(#glow)"/>
+        <circle id="orb" r="26" fill="#FFD166"/>
+        <g id="clouds" fill="#fff">
+          <g class="cl"><ellipse cx="210" cy="96" rx="58" ry="15"/><ellipse cx="250" cy="86" rx="38" ry="15"/><ellipse cx="172" cy="90" rx="30" ry="12"/></g>
+          <g class="cl"><ellipse cx="860" cy="130" rx="66" ry="16"/><ellipse cx="905" cy="119" rx="40" ry="15"/><ellipse cx="820" cy="124" rx="32" ry="12"/></g>
+          <g class="cl"><ellipse cx="520" cy="62" rx="48" ry="12"/><ellipse cx="552" cy="54" rx="30" ry="12"/></g>
+        </g>
+        <path d="M0 330 C120 270 240 290 360 310 S600 250 760 290 S1000 240 1200 300 V420 H0Z" fill="#6f9c86" opacity=".6"/>
+        <path d="M0 372 C150 332 300 350 450 362 S800 322 1000 352 S1150 342 1200 350 V420 H0Z" fill="#4f8468" opacity=".85"/>
+        <rect id="smog" x="0" y="130" width="1200" height="290" fill="url(#smoggrad)" opacity="0" pointer-events="none"/>
+        <rect y="408" width="1200" height="112" fill="url(#ground)"/>
+        <g id="river"></g>
+        <g id="fish"></g>
+        <g id="landfill"></g>
+        <g id="tree"></g>
+        <g id="blds"></g>
+        <rect id="night" width="1200" height="520" fill="#0a1230" opacity="0" pointer-events="none"/>
+        <g id="wins" pointer-events="none"></g>
+        <g id="rings" pointer-events="none"></g>
+        <g id="flies" pointer-events="none"></g>
+        <g class="birds" id="birds" pointer-events="none" fill="none" stroke="#12302A" stroke-width="2" stroke-linecap="round">
+          <path d="M0 90 q6 -7 12 0 q6 -7 12 0"/><path d="M40 70 q5 -6 10 0 q5 -6 10 0"/><path d="M-30 112 q5 -6 10 0 q5 -6 10 0"/>
+        </g>
+      </svg>
+    </section>
+
+    <section class="dock" aria-label="Time controls and demo scenarios">
+      <button class="play" id="play" type="button" aria-label="Play the day"></button>
+      <div class="clockbox"><strong id="clock">6:00 PM</strong><span id="phase">dusk</span></div>
+      <input id="time" type="range" min="0" max="23" step="1" value="18" aria-label="Time of day">
+      <div class="demo">
+        <span>Try a problem</span>
+        <button class="ghost" id="d-leak" type="button">Tap running at Kshipra</button>
+        <button class="ghost" id="d-ac" type="button">AC left on in Engineering</button>
+        <button class="ghost" id="d-canteen" type="button">Canteen tap after dinner</button>
+        <button class="ghost" id="d-sports" type="button">Floodlights after closing</button>
+        <button class="ghost" id="d-reset" type="button">Reset the day</button>
+      </div>
+    </section>
+
+    <section class="strip" id="readings" aria-label="Campus totals so far today">
+      <div><b id="s-e">0</b><span id="s-e2"></span></div>
+      <div><b id="s-w">0</b><span id="s-w2"></span></div>
+      <div><b id="s-s">0</b><span id="s-s2"></span></div>
+      <div><b id="s-c">0</b><span id="s-c2"></span></div>
+    </section>
+
+    <section class="scoreboard" aria-label="How the eco-score is built">
+      <article class="score-card">
+        <h2>Eco-score recipe</h2>
+        <p class="lede">One number, three ingredients. Electricity and water are scored against a typical day. Waste is scored on how much stays out of landfill.</p>
+        <div class="bars" id="score-bars"></div>
+      </article>
+      <article class="score-card inspector" id="inspector">
+        <h2 id="insp-title">Whole campus</h2>
+        <p class="lede" id="insp-lede">Click a building in the picture or in the list below.</p>
+        <div class="facts" id="insp-facts"></div>
+      </article>
+    </section>
+
+    <div class="grid">
+      <div class="col">
+        <section class="panel">
+          <div class="head">
+            <div>
+              <h2 id="ch-title">Electricity through the day</h2>
+              <p class="lede" id="ch-sub">Whole campus. The shaded band is what a normal day looks like, learned from the last 14 days.</p>
+            </div>
+            <div class="seg" id="seg" role="group" aria-label="Resource">
+              <button type="button" data-r="e" aria-pressed="true">Electricity</button>
+              <button type="button" data-r="w" aria-pressed="false">Water</button>
+              <button type="button" data-r="s" aria-pressed="false">Waste</button>
+            </div>
+          </div>
+          <svg class="chart" id="chart" viewBox="0 0 720 260" role="img" aria-label="Hourly usage chart"></svg>
+          <div class="legend">
+            <span><i></i>Today</span>
+            <span><i class="dash"></i>Typical day</span>
+            <span><i class="band"></i>Normal range</span>
+            <span><i class="dot"></i>Unusual hour</span>
+          </div>
+        </section>
+
+        <section class="panel flip">
+          <h2>Where it is going</h2>
+          <p class="lede">Pick a building here or in the picture. The percentage compares today so far with a typical day.</p>
+          <div class="zones" id="zones"></div>
+        </section>
+      </div>
+
+      <div class="col">
+        <section class="panel flip">
+          <h2>Needs attention</h2>
+          <div id="alerts"></div>
+          <div class="ledger" id="ledger" hidden></div>
+        </section>
+
+        <section class="panel" id="habits">
+          <h2>What if we changed a few habits?</h2>
+          <p class="lede">Move the levers, read the yearly payoff, then apply it and watch the campus respond.</p>
+          <div class="lever"><label for="l-ac">Raise AC setpoint <output id="o-ac"></output></label><input id="l-ac" type="range" min="0" max="3" step="1" value="2"><small>Each degree trims about 6% of cooling load.</small></div>
+          <div class="lever"><label for="l-idle">Lights and fans off in empty rooms <output id="o-idle"></output></label><input id="l-idle" type="range" min="0" max="100" step="5" value="40"><small>Idle rooms account for roughly 14% of power.</small></div>
+          <div class="lever"><label for="l-leak">Fix leaks and fit low-flow taps <output id="o-leak"></output></label><input id="l-leak" type="range" min="0" max="100" step="5" value="50"><small>Leaks and careless use waste about 18% of water.</small></div>
+          <div class="lever"><label for="l-div">Waste kept out of landfill <output id="o-div"></output></label><input id="l-div" type="range" min="22" max="90" step="2" value="56"><small>Segregation at source, starting from today's 22%.</small></div>
+          <div class="proj" id="proj" aria-live="polite"></div>
+          <div class="btnrow">
+            <button class="solid" id="apply" type="button">Apply to the campus</button>
+            <button class="ghost" id="undo" type="button" hidden>Undo</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Which bin does it go in?</h2>
+        <p class="lede">Type any item. A keyword model that follows India's segregation colours sorts it, and it forgives small typos.</p>
+        <div class="sortrow">
+          <input id="item" type="text" placeholder="For example, banana peel" autocomplete="off" aria-label="Item to sort">
+          <button class="solid" id="sortbtn" type="button">Sort it</button>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="result" id="result">
+          <svg class="bin" id="binsvg" viewBox="0 0 90 110" aria-hidden="true">
+            <g id="bin-lid">
+              <rect id="bin-lidr" x="8" y="14" width="74" height="10" rx="4" fill="#9aa8a2"/>
+              <rect id="bin-handle" x="36" y="8" width="18" height="8" rx="3" fill="#9aa8a2"/>
+            </g>
+            <path id="bin-body" d="M14 28 H76 L71 104 Q70.5 108 66 108 H24 Q19.5 108 19 104Z" fill="#9aa8a2"/>
+            <path d="M32 40 V96 M45 40 V96 M58 40 V96" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div id="res-text">
+            <h3>Waiting for an item</h3>
+            <p class="tip">Pick an example above or type your own.</p>
+          </div>
+        </div>
+        <div class="tally" id="tally"></div>
+      </section>
+
+      <section class="panel flip">
+        <h2>Your own pledges</h2>
+        <p class="lede">Tick what you will do. Your share of the savings adds up over a semester.</p>
+        <div class="pledges" id="pledges"></div>
+        <div class="mine" id="mine"></div>
+      </section>
+    </div>
+
+    <section class="carbon panel" id="carbon">
+      <div class="head">
+        <div>
+          <h2>Carbon credits</h2>
+          <p class="lede">Every tonne of CO2e the campus avoids can be counted as a credit. Apply the habit changes above and watch credits appear, then retire them against the campus footprint.</p>
+        </div>
+      </div>
+      <div class="lever cc-price"><label for="c-price">Assumed value of one credit <output id="o-price"></output></label><input id="c-price" type="range"><small>A planning figure only. Real prices depend on the registry and the project type.</small></div>
+      <div id="carbon-body" aria-live="polite"></div>
+    </section>
+
+    <section class="atlas" id="atlas">
+      <div class="head">
+        <div>
+          <h2>Building atlas</h2>
+          <p class="lede">Six places, six rhythms. These profiles are the stories behind the meters — occupancy, peak hours, and what usually goes wrong.</p>
+        </div>
+      </div>
+      <div class="atlas-grid" id="atlas-grid"></div>
+    </section>
+
+    <section class="daylife panel">
+      <h2>A typical weekday on this campus</h2>
+      <p class="lede">The generator is not random noise. Each building has a shape learned from hostel mornings, lecture blocks and canteen rushes.</p>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <section class="notes" id="method">
+      <div>
+        <h3>What is real and what is simulated</h3>
+        <p>The readings are generated: 14 days of history plus today, shaped like real hostel, canteen and classroom curves. Everything after that is real logic. A baseline is learned per building and hour, unusual hours are flagged, and the score, chart and illustration all read from the same numbers. A meter feed could replace the generator without touching the rest.</p>
+      </div>
+      <div>
+        <h3>Assumptions you can change</h3>
+        <ul>
+          <li>Grid emissions: 0.71 kg CO2e per kWh</li>
+          <li>Landfilled waste: 0.5 kg CO2e per kg</li>
+          <li>Power ₹8 per kWh, water ₹20 per kilolitre</li>
+          <li>One tree absorbs about 21 kg CO2 a year</li>
+          <li>Without monitoring, a fault runs about 12 hours before anyone notices</li>
+          <li>300 working days a year</li>
+          <li>Carbon credit: 1 tonne CO2e avoided, with a 10% safety buffer withheld</li>
+          <li>Credit value: ₹800 per tonne by default, set with the slider</li>
+        </ul>
+      </div>
+      <div>
+        <h3>How unusual is flagged</h3>
+        <p>Each hour is compared with that building's 14-day mean and standard deviation. If usage sits more than 3.5σ above the baseline for two hours running, Prakriti raises an alert. That is why a dripping tap at 3 AM is louder than a busy canteen at lunch.</p>
+      </div>
+    </section>
+
+    <section class="glossary">
+      <h2>Plain-language glossary</h2>
+      <dl>
+        <div><dt>Eco-score</dt><dd>A 0–100 mix of electricity (40%), water (35%) and waste diversion (25%). Higher is greener.</dd></div>
+        <div><dt>Typical day</dt><dd>The average of the last 14 simulated days, hour by hour, for each building.</dd></div>
+        <div><dt>Diversion</dt><dd>Share of waste that never reaches landfill — compost, recycling, e-waste drop.</dd></div>
+        <div><dt>Z-score</dt><dd>How many standard deviations this hour is from the usual pattern. Above 3.5 looks like a fault.</dd></div>
+        <div><dt>Carbon credit</dt><dd>One tonne of CO2e that was avoided. Here they are internal and simulated. A buffer is withheld, and a retired credit cannot be reused.</dd></div>
+        <div><dt>Tree-year</dt><dd>Roughly 21 kg of CO2 absorbed by one mature tree in a year. Used only as a scale, not a planting plan.</dd></div>
+        <div><dt>Setpoint</dt><dd>The temperature you ask the AC to hold. Raising it a degree is one of the cheapest savings on campus.</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p lang="hi" class="deva-line">प्रकृति रक्षति रक्षिता।</p>
+    <p>Nature protects those who protect her. Built with plain HTML, CSS and JavaScript — no libraries. Fonts: Bricolage Grotesque, Hanken Grotesk, Tiro Devanagari Hindi.</p>
+    <p class="keys">Shortcuts: play the clock from the dock, click a building, or press Tab through the map. Theme is remembered on this device.</p>
+  </footer>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/data.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/alerts.js"></script>
+<script src="js/habits.js"></script>
+<script src="js/sorter.js"></script>
+<script src="js/carbon.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
