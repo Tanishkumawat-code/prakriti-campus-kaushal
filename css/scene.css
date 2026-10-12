@@ -1,0 +1,31 @@
+.stage{position:relative;border-radius:var(--leaf);overflow:hidden;border:1px solid var(--line);background:#8cc7e6}
+#scene{display:block;width:100%;height:auto;aspect-ratio:1200/520}
+.tag{position:absolute;left:22px;top:22px;width:min(380px,42%);background:var(--card);padding:18px 20px 16px;border-radius:30px 6px 30px 6px;box-shadow:0 10px 30px rgba(10,30,25,.18)}
+.tag h1{font-size:clamp(1.3rem,2.1vw,1.75rem)}
+.tag p{margin-top:8px;color:var(--muted);font-size:.93rem;line-height:1.45}
+.leaves{display:flex;gap:3px;margin-top:12px}
+.leaves svg{width:20px;height:20px}
+.bld{cursor:pointer}
+.bld:focus-visible{outline:none}
+.bld:focus-visible .body{stroke:var(--gold);stroke-width:3}
+.bld .body{stroke:transparent;stroke-width:3;transition:stroke .2s}
+.bld.sel .body{stroke:#F2B94D}
+.lbl text{font:600 12px var(--f-body);fill:var(--ink)}
+.lbl rect{fill:var(--card);opacity:.92}
+.river-a{animation:drift 16s linear infinite}
+.river-b{animation:drift 9s linear infinite}
+@keyframes drift{to{transform:translateX(-120px)}}
+.fly{animation:twinkle 3.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:1}}
+.birds{animation:fly 40s linear infinite}
+@keyframes fly{from{transform:translateX(-160px)}to{transform:translateX(1300px)}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+.drip{animation:drip 1.2s ease-in infinite}
+@keyframes drip{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(22px);opacity:0}}
+@media (max-width:1000px){
+  .tag{position:static;width:auto;border-radius:0;box-shadow:none;border-bottom:1px solid var(--line)}
+}
+@media (max-width:700px){
+  .lbl{display:none}
+}

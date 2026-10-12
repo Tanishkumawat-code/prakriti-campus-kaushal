@@ -1,0 +1,36 @@
+.score-card{background:var(--card);border:1px solid var(--line);border-radius:var(--leaf);padding:26px 28px}
+.score-card.inspector{border-radius:var(--leaf-flip)}
+.bars{display:grid;gap:14px;margin-top:16px}
+.bar{display:grid;gap:6px}
+.bar label{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600}
+.bar label span{color:var(--muted);font-weight:500}
+.track{height:10px;border-radius:999px;background:var(--paper);overflow:hidden;border:1px solid var(--line)}
+.track i{display:block;height:100%;border-radius:inherit;background:var(--moss)}
+.track i.water{background:var(--river)}
+.track i.waste{background:var(--gold)}
+.facts{margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.facts span{display:block;font-size:.8rem;color:var(--muted)}
+.facts strong{display:block;margin:0;font:700 1.12rem/1.2 var(--f-display)}
+.atlas{margin:36px 0 24px}
+.atlas-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:28px 8px 28px 8px;padding:20px 22px;cursor:pointer;color:inherit}
+.card:hover,.card[aria-pressed="true"]{border-color:var(--moss);background:var(--moss-soft)}
+.card h3{font-size:1.15rem}
+.card .kind{color:var(--moss);font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.92rem;margin-top:8px}
+.card ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:.86rem}
+.daylife{margin-bottom:20px}
+.timeline{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.timeline time{font-weight:700;font-variant-numeric:tabular-nums;color:var(--moss)}
+.timeline p{color:var(--muted)}
+.glossary{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--leaf);padding:26px 28px}
+.glossary dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:16px 0 0}
+.glossary dt{font-family:var(--f-display);font-weight:700}
+.glossary dd{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.foot{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+.deva-line{font:400 1.35rem/1.4 var(--f-deva);color:var(--moss);margin-bottom:8px}
+.keys{margin-top:8px}
+@media (max-width:900px){
+  .atlas-grid,.glossary dl{grid-template-columns:1fr}
+}

@@ -1,0 +1,46 @@
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#EDF2EA; --card:#FAFBF6; --ink:#12302A; --muted:#4A625C; --line:rgba(18,48,42,.16);
+  --moss:#2D6A4F; --moss-soft:#D5E6D6; --gold:#E9A12B; --gold-soft:#F8E6BE;
+  --river:#2A84A6; --rangoli:#B8305F; --rangoli-soft:#F6D5E0;
+  --leaf:40px 8px 40px 8px; --leaf-flip:8px 40px 8px 40px;
+  --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --f-body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+  --f-deva:'Tiro Devanagari Hindi','Noto Serif Devanagari',serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1D1A; --card:#152724; --ink:#E5EFE7; --muted:#9FB7AF; --line:rgba(229,239,231,.16);
+    --moss:#74C69D; --moss-soft:#1E3B33; --gold:#F2B94D; --gold-soft:#3A2E14;
+    --river:#62B9DB; --rangoli:#F27AA3; --rangoli-soft:#40202D;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1D1A; --card:#152724; --ink:#E5EFE7; --muted:#9FB7AF; --line:rgba(229,239,231,.16);
+  --moss:#74C69D; --moss-soft:#1E3B33; --gold:#F2B94D; --gold-soft:#3A2E14;
+  --river:#62B9DB; --rangoli:#F27AA3; --rangoli-soft:#40202D;
+}
+:root[data-theme="light"]{
+  --paper:#EDF2EA; --card:#FAFBF6; --ink:#12302A; --muted:#4A625C; --line:rgba(18,48,42,.16);
+  --moss:#2D6A4F; --moss-soft:#D5E6D6; --gold:#E9A12B; --gold-soft:#F8E6BE;
+  --river:#2A84A6; --rangoli:#B8305F; --rangoli-soft:#F6D5E0;
+}
+html{scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 var(--f-body)}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.015em;line-height:1.15}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-40px;background:var(--moss);color:var(--paper);padding:8px 14px;border-radius:999px;z-index:20}
+.skip:focus{top:12px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px 56px}
+.lede{color:var(--muted);margin-top:6px;max-width:62ch;font-size:.97rem}
+.kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--moss);margin:0 0 6px}
+.up{color:var(--rangoli)} .down{color:var(--moss)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
